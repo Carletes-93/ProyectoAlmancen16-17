@@ -22,9 +22,9 @@ and open the template in the editor.
             <tr>
                 <th class="tabck" id="tabck-0" onclick="activarTab(this)">Estanterías</th>
                 <th class="tabcks">&nbsp;</th>
-                <th class="tabck" id="tabck-1" onclick="activarTab(this)">Segunda</th>
+                <th class="tabck" id="tabck-1" onclick="activarTab(this)">Cajas</th>
                 <th class="tabcks">&nbsp;</th>
-                <th class="tabck" id="tabck-2" onclick="activarTab(this)">Tercera</th>
+                <th class="tabck" id="tabck-2" onclick="activarTab(this)">Almacén</th>
             </tr>
             <tr class="filadiv">
                 <td colspan="6" id="tab-0">
@@ -41,7 +41,11 @@ and open the template in the editor.
                         </form>
                     </div>
                     <div class="tabdiv" id="tabdiv-2">
-                        <p>id=tabdiv-2</p>...
+                        <form action="Controlador/despachadorAlmacen.php">
+                            <p><h3><input type="radio" name="opcion" value="INVENTARIO" required>Inventario</h3></p>
+                            <p><h3><input type="radio" name="opcion" value="SACAR" required>Sacar Caja</h3></p>
+                            <input type="submit" class="btn2" value="Ir">
+                        </form>
                     </div>
                 </td>
             </tr>

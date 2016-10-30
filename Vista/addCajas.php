@@ -57,7 +57,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td>Color:</td>
-                    <td><input type="text" id="color" name="COLOR" required></td>
+                    <td><input type="color" id="color" name="COLOR" required></td>
                 </tr>
                 <tr>
                     <td>Tipo:</td>
@@ -78,5 +78,7 @@ and open the template in the editor.
                     </td>
                 </tr>
             </table>
+        </form>
+        <a href="./AltaCajas.php"><button>Volver</button></a>
     </body>
 </html>

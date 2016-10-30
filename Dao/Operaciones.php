@@ -20,7 +20,7 @@ class Operaciones {
 
     public function addEstanteria($_objEstanteria) {
         include_once '../Modelo/Estanteria.php';
-        
+
         $_lejas = $_objEstanteria->getLejas();
         $_material = $_objEstanteria->getMaterial();
         $_pasillo = $_objEstanteria->getPasillo();
@@ -65,7 +65,7 @@ class Operaciones {
 
     function cargarEstanteriasLibres() {
         include_once '../Modelo/Estanteria.php';
-        
+
         $aEstanterias = Array();
 
         global $conexion;
@@ -89,7 +89,7 @@ class Operaciones {
 
     public function addCajaSorpresa($_objcajasorpresa) {
         include_once '../Modelo/CajaSorpresa.php';
-        
+
         $_codigo = $_objcajasorpresa->getCodigo();
         $_alto = $_objcajasorpresa->getAltura();
         $_ancho = $_objcajasorpresa->getAnchura();
@@ -103,21 +103,21 @@ class Operaciones {
         global $conexion;
 
         $conexion->autocommit(FALSE);
-        
+
         $sentencia = "INSERT INTO caja_sorpresa VALUES (NULL, '$_codigo', '$_alto','$_ancho','$_prof', '$_contenido', '$_color', '$_fecha')";
-        
+
         $resul = $conexion->query($sentencia);
-        
+
         $id = mysqli_insert_id($conexion);
 
         $sentencia = "UPDATE estanteria SET OCUPADAS=(OCUPADAS+1) WHERE ID_ESTANTERIA=$_cod_estanteria";
-        
+
         $resul = $conexion->query($sentencia);
-        
+
         $sentencia = "INSERT INTO ocupacion VALUES (NULL, $_cod_estanteria, $_leja, $id, 'sorpresa')";
-        
+
         $resul = $conexion->query($sentencia);
-        
+
         if ($resul) {
             $conexion->commit();
             echo "Caja Sorpresa insertada correctamente.";
@@ -128,10 +128,10 @@ class Operaciones {
         }
         exit();
     }
-    
+
     public function addCajaFuerte($_objcajafuerte) {
         include_once '../Modelo/CajaFuerte.php';
-        
+
         $_codigo = $_objcajafuerte->getCodigo();
         $_alto = $_objcajafuerte->getAltura();
         $_ancho = $_objcajafuerte->getAnchura();
@@ -145,21 +145,21 @@ class Operaciones {
         global $conexion;
 
         $conexion->autocommit(FALSE);
-        
+
         $sentencia = "INSERT INTO caja_fuerte VALUES (NULL, '$_codigo', '$_alto','$_ancho','$_prof', '$_contenido', '$_color', '$_fecha')";
-        
+
         $resul = $conexion->query($sentencia);
-        
+
         $id = mysqli_insert_id($conexion);
 
         $sentencia = "UPDATE estanteria SET OCUPADAS=(OCUPADAS+1) WHERE ID_ESTANTERIA=$_cod_estanteria";
-        
+
         $resul = $conexion->query($sentencia);
-        
+
         $sentencia = "INSERT INTO ocupacion VALUES (NULL, $_cod_estanteria, $_leja, $id, 'fuerte')";
-        
+
         $resul = $conexion->query($sentencia);
-        
+
         if ($resul) {
             $conexion->commit();
             echo "Caja Fuerte insertada correctamente.";
@@ -170,10 +170,10 @@ class Operaciones {
         }
         exit();
     }
-    
+
     public function addCajaNegra($_objcajanegra) {
         include_once '../Modelo/CajaNegra.php';
-        
+
         $_codigo = $_objcajanegra->getCodigo();
         $_alto = $_objcajanegra->getAltura();
         $_ancho = $_objcajanegra->getAnchura();
@@ -187,21 +187,21 @@ class Operaciones {
         global $conexion;
 
         $conexion->autocommit(FALSE);
-        
+
         $sentencia = "INSERT INTO caja_negra VALUES (NULL, '$_codigo', '$_alto','$_ancho','$_prof', '$_contenido', '$_color', '$_fecha')";
-        
+
         $resul = $conexion->query($sentencia);
-        
+
         $id = mysqli_insert_id($conexion);
 
         $sentencia = "UPDATE estanteria SET OCUPADAS=(OCUPADAS+1) WHERE ID_ESTANTERIA=$_cod_estanteria";
-        
+
         $resul = $conexion->query($sentencia);
-        
+
         $sentencia = "INSERT INTO ocupacion VALUES (NULL, $_cod_estanteria, $_leja, $id, 'negra')";
-        
+
         $resul = $conexion->query($sentencia);
-        
+
         if ($resul) {
             $conexion->commit();
             echo "Caja Negra insertada correctamente.";
@@ -212,4 +212,173 @@ class Operaciones {
         }
         exit();
     }
+
+    public function montarInventario() {
+        include_once '../Modelo/EstanteriaCajas.php';
+        include_once '../Modelo/Inventario.php';
+
+        global $conexion;
+
+        $aEstanteriaCajas = Array();
+
+        $sentencia = "SELECT * FROM estanteria";
+        $resul = $conexion->query($sentencia, MYSQLI_STORE_RESULT);
+        $fila = $resul->fetch_array();
+        while ($fila) {
+            $_codigoEst = $fila['ID_ESTANTERIA'];
+            $aCajas = Array();
+            $sentenciaOcu = "SELECT * FROM ocupacion WHERE COD_ESTANTERIA = $_codigoEst";
+            $resulOcu = $conexion->query($sentenciaOcu, MYSQLI_STORE_RESULT);
+            $filaOcu = $resulOcu->fetch_array();
+            while ($filaOcu) {
+                $_tipo = $filaOcu['TIPO'];
+                $_codCaja = $filaOcu['COD_CAJA'];
+
+                switch ($_tipo) {
+                    case 'sorpresa':
+                        $sentenciaSor = "SELECT * FROM caja_sorpresa WHERE ID_CAJA_SORPRESA=$_codCaja";
+                        $resulSor = $conexion->query($sentenciaSor, MYSQLI_STORE_RESULT);
+                        $filaSor = $resulSor->fetch_array();
+                        $_cajaSor = new CajaSorpresa($filaSor['ALTO'], $filaSor['ANCHO'], $filaSor['PROFUNDIDAD'], $filaSor['COLOR'], $filaSor['SORPRESA']);
+                        $_cajaSor->setId($filaSor['ID_CAJA_SORPRESA']);
+                        $_cajaSor->setCodigo($filaSor['CODIGO']);
+                        $_cajaSor->setFecha_alta($filaSor['FECHA_ALTA']);
+                        $_cajaSor->setLeja($filaOcu['LEJA']);
+                        $_cajaSor->setEstanteria($fila['ID_ESTANTERIA']);
+                        array_push($aCajas, $_cajaSor);
+                        break;
+                    case 'fuerte':
+                        $sentenciaFu = "SELECT * FROM caja_fuerte WHERE ID_CAJA_FUERTE=$_codCaja";
+                        $resulFu = $conexion->query($sentenciaFu, MYSQLI_STORE_RESULT);
+                        $filaFu = $resulFu->fetch_array();
+                        $_cajaFu = new CajaFuerte($filaFu['ALTO'], $filaFu['ANCHO'], $filaFu['PROFUNDIDAD'], $filaFu['COLOR'], $filaFu['CLAVE']);
+                        $_cajaFu->setId($filaFu['ID_CAJA_FUERTE']);
+                        $_cajaFu->setCodigo($filaFu['CODIGO']);
+                        $_cajaFu->setFecha_alta($filaFu['FECHA_ALTA']);
+                        $_cajaFu->setLeja($filaOcu['LEJA']);
+                        $_cajaFu->setEstanteria($fila['ID_ESTANTERIA']);
+                        array_push($aCajas, $_cajaFu);
+                        break;
+                    case 'negra':
+                        $sentenciaNe = "SELECT * FROM caja_negra WHERE ID_CAJA_NEGRA=$_codCaja";
+                        $resulNe = $conexion->query($sentenciaNe, MYSQLI_STORE_RESULT);
+                        $filaNe = $resulNe->fetch_array();
+                        $_cajaNe = new CajaFuerte($filaNe['ALTO'], $filaNe['ANCHO'], $filaNe['PROFUNDIDAD'], $filaNe['COLOR'], $filaNe['PLACA']);
+                        $_cajaNe->setId($filaNe['ID_CAJA_FUERTE']);
+                        $_cajaNe->setCodigo($filaNe['CODIGO']);
+                        $_cajaNe->setFecha_alta($filaNe['FECHA_ALTA']);
+                        $_cajaNe->setLeja($filaOcu['LEJA']);
+                        $_cajaNe->setEstanteria($fila['ID_ESTANTERIA']);
+                        array_push($aCajas, $_cajaNe);
+                        break;
+                }
+                $filaOcu = $resulOcu->fetch_array();
+            }
+            $estanteriaCajas = new EstanteriaCajas($fila['NºLEJAS'], $fila['MATERIAL'], $fila['PASILLO'], $fila['NUMERO'], $aCajas);
+            $estanteriaCajas->setId($fila['ID_ESTANTERIA']);
+            $estanteriaCajas->setCodigo_estanteria($fila['CODIGO']);
+            array_push($aEstanteriaCajas, $estanteriaCajas);
+            $fila = $resul->fetch_array();
+        }
+        $_inventario = new Inventario($aEstanteriaCajas);
+        return $_inventario;
+    }
+
+    public function cargarCajaSacar($_tipo, $_codcaja) {
+        include_once '../Modelo/CajaSorpresa.php';
+        include_once '../Modelo/CajaFuerte.php';
+        include_once '../Modelo/CajaNegra.php';
+
+        global $conexion;
+
+        switch ($_tipo) {
+            case 'sorpresa':
+                $sentencia = "SELECT * FROM caja_sorpresa WHERE CODIGO like '$_codcaja'";
+                $resulSor = $conexion->query($sentencia, MYSQLI_STORE_RESULT);
+                $fila = $resulSor->fetch_array();
+                while ($fila) {
+                    $_idSor = $fila['ID_CAJA_SORPRESA'];
+                    $sentenciaOcu = "SELECT * FROM ocupacion WHERE COD_CAJA='$_idSor' AND TIPO LIKE '$_tipo'";
+                    $resulOcu = $conexion->query($sentenciaOcu, MYSQLI_STORE_RESULT);
+                    $filaOcu = $resulOcu->fetch_array();
+                    while ($filaOcu) {
+                        $_caja = new CajaSorpresa($fila['ALTO'], $fila['ANCHO'], $fila['PROFUNDIDAD'], $fila['COLOR'], $fila['SORPRESA']);
+                        $_caja->setCodigo($fila['CODIGO']);
+                        $_caja->setId($fila['ID_CAJA_SORPRESA']);
+                        $_caja->setFecha_alta($fila['FECHA_ALTA']);
+                        $_caja->setEstanteria($filaOcu['COD_ESTANTERIA']);
+                        $_caja->setLeja($filaOcu['LEJA']);
+                        $filaOcu = $resulOcu->fetch_array();
+                    }
+                    $fila = $resulSor->fetch_array();
+                }
+        }
+        switch ($_tipo) {
+            case 'fuerte':
+                $sentencia = "SELECT * FROM caja_fuerte WHERE CODIGO like '$_codcaja'";
+                $resulFu = $conexion->query($sentencia, MYSQLI_STORE_RESULT);
+                $fila = $resulFu->fetch_array();
+                while ($fila) {
+                    $_idFu = $fila['ID_CAJA_FUERTE'];
+                    $sentenciaOcu = "SELECT * FROM ocupacion WHERE COD_CAJA='$_idFu' AND TIPO LIKE '$_tipo'";
+                    $resulOcu = $conexion->query($sentenciaOcu, MYSQLI_STORE_RESULT);
+                    $filaOcu = $resulOcu->fetch_array();
+                    while ($filaOcu) {
+                        $_caja = new CajaFuerte($fila['ALTO'], $fila['ANCHO'], $fila['PROFUNDIDAD'], $fila['COLOR'], $fila['CLAVE']);
+                        $_caja->setCodigo($fila['CODIGO']);
+                        $_caja->setId($fila['ID_CAJA_FUERTE']);
+                        $_caja->setFecha_alta($fila['FECHA_ALTA']);
+                        $_caja->setEstanteria($filaOcu['COD_ESTANTERIA']);
+                        $_caja->setLeja($filaOcu['LEJA']);
+                        $filaOcu = $resulOcu->fetch_array();
+                    }
+                    $fila = $resulFu->fetch_array();
+                }
+        }
+        switch ($_tipo) {
+            case 'negra':
+                $sentencia = "SELECT * FROM caja_negra WHERE CODIGO like '$_codcaja'";
+                $resulNe = $conexion->query($sentencia, MYSQLI_STORE_RESULT);
+                $fila = $resulNe->fetch_array();
+                while ($fila) {
+                    $_idNe = $fila['ID_CAJA_NEGRA'];
+                    $sentenciaOcu = "SELECT * FROM ocupacion WHERE COD_CAJA='$_idNe' AND TIPO LIKE '$_tipo'";
+                    $resulOcu = $conexion->query($sentenciaOcu, MYSQLI_STORE_RESULT);
+                    $filaOcu = $resulOcu->fetch_array();
+                    while ($filaOcu) {
+                        $_caja = new CajaFuerte($fila['ALTO'], $fila['ANCHO'], $fila['PROFUNDIDAD'], $fila['COLOR'], $fila['PLACA']);
+                        $_caja->setCodigo($fila['CODIGO']);
+                        $_caja->setId($fila['ID_CAJA_NEGRA']);
+                        $_caja->setFecha_alta($fila['FECHA_ALTA']);
+                        $_caja->setEstanteria($filaOcu['COD_ESTANTERIA']);
+                        $_caja->setLeja($filaOcu['LEJA']);
+                        $filaOcu = $resulOcu->fetch_array();
+                    }
+
+                    $fila = $resulNe->fetch_array();
+                }
+        }
+        return $_caja;
+    }
+
+    public function borrarCaja($_caja) {
+        $_codcaja = $_caja->getCodigo();
+        
+        global $conexion;
+
+        if ($_caja instanceof CajaSorpresa) {
+            $sentencia = "DELETE FROM caja_sorpresa WHERE CODIGO = $_codcaja";
+        }
+        if ($_caja instanceof CajaFuerte) {
+            $sentencia = "DELETE FROM caja_fuerte WHERE CODIGO = $_codcaja";
+        }
+        if ($_caja instanceof CajaNegra) {
+            $sentencia = "DELETE FROM caja_negra WHERE CODIGO = $_codcaja";
+        }
+
+        if ($conexion->query($sentencia)) {
+            header('Location: ../index.php');
+        }
+    }
+
 }
