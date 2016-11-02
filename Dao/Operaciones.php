@@ -63,7 +63,7 @@ class Operaciones {
         return $aEstanterias;
     }
 
-    function cargarEstanteriasLibres() {
+    public function cargarEstanteriasLibres() {
         include_once '../Modelo/Estanteria.php';
 
         $aEstanterias = Array();
@@ -263,7 +263,7 @@ class Operaciones {
                         $sentenciaNe = "SELECT * FROM caja_negra WHERE ID_CAJA_NEGRA=$_codCaja";
                         $resulNe = $conexion->query($sentenciaNe, MYSQLI_STORE_RESULT);
                         $filaNe = $resulNe->fetch_array();
-                        $_cajaNe = new CajaFuerte($filaNe['ALTO'], $filaNe['ANCHO'], $filaNe['PROFUNDIDAD'], $filaNe['COLOR'], $filaNe['PLACA']);
+                        $_cajaNe = new CajaNegra($filaNe['ALTO'], $filaNe['ANCHO'], $filaNe['PROFUNDIDAD'], $filaNe['COLOR'], $filaNe['PLACA']);
                         $_cajaNe->setId($filaNe['ID_CAJA_FUERTE']);
                         $_cajaNe->setCodigo($filaNe['CODIGO']);
                         $_cajaNe->setFecha_alta($filaNe['FECHA_ALTA']);
