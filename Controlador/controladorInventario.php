@@ -8,6 +8,6 @@ session_start();
 $_inventario = Operaciones::montarInventario();
 
 $_SESSION['inventario'] = $_inventario;
-header("Location:../vista/VerInventario.php");
+header("Location:../Vista/VerInventario.php");
 
 

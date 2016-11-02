@@ -13,6 +13,6 @@ switch($_opcion){
         Operaciones::borrarCaja($_CajaASacar);
         break;
     case 'No':
-        header("Location:../index.php");
+        header("Location:../Vista/SacarCaja.php");
         break;
 }

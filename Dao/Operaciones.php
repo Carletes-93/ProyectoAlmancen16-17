@@ -293,7 +293,7 @@ class Operaciones {
 
         switch ($_tipo) {
             case 'sorpresa':
-                $sentencia = "SELECT * FROM caja_sorpresa WHERE CODIGO like '$_codcaja'";
+                $sentencia = "SELECT * FROM caja_sorpresa WHERE CODIGO LIKE '$_codcaja'";
                 $resulSor = $conexion->query($sentencia, MYSQLI_STORE_RESULT);
                 $fila = $resulSor->fetch_array();
                 while ($fila) {
@@ -306,7 +306,13 @@ class Operaciones {
                         $_caja->setCodigo($fila['CODIGO']);
                         $_caja->setId($fila['ID_CAJA_SORPRESA']);
                         $_caja->setFecha_alta($fila['FECHA_ALTA']);
-                        $_caja->setEstanteria($filaOcu['COD_ESTANTERIA']);
+                        $sentenciaEst = "SELECT e.CODIGO FROM estanteria e WHERE e.ID_ESTANTERIA=(SELECT COD_ESTANTERIA FROM ocupacion WHERE COD_CAJA = (SELECT ID_CAJA_SORPRESA FROM caja_sorpresa WHERE CODIGO LIKE '$_codcaja') AND TIPO LIKE '$_tipo')";
+                        $resulEst = $conexion->query($sentenciaEst, MYSQLI_STORE_RESULT);
+                        $filaEst = $resulEst->fetch_array();
+                        while($filaEst){
+                            $_caja->setEstanteria($filaEst['CODIGO']);
+                            $filaEst = $resulEst->fetch_array();
+                        }
                         $_caja->setLeja($filaOcu['LEJA']);
                         $filaOcu = $resulOcu->fetch_array();
                     }
@@ -328,7 +334,13 @@ class Operaciones {
                         $_caja->setCodigo($fila['CODIGO']);
                         $_caja->setId($fila['ID_CAJA_FUERTE']);
                         $_caja->setFecha_alta($fila['FECHA_ALTA']);
-                        $_caja->setEstanteria($filaOcu['COD_ESTANTERIA']);
+                        $sentenciaEst = "SELECT e.CODIGO FROM estanteria e WHERE e.ID_ESTANTERIA=(SELECT COD_ESTANTERIA FROM ocupacion WHERE COD_CAJA = (SELECT ID_CAJA_FUERTE FROM caja_fuerte WHERE CODIGO LIKE '$_codcaja') AND TIPO LIKE '$_tipo')";
+                        $resulEst = $conexion->query($sentenciaEst, MYSQLI_STORE_RESULT);
+                        $filaEst = $resulEst->fetch_array();
+                        while($filaEst){
+                            $_caja->setEstanteria($filaEst['CODIGO']);
+                            $filaEst = $resulEst->fetch_array();
+                        }
                         $_caja->setLeja($filaOcu['LEJA']);
                         $filaOcu = $resulOcu->fetch_array();
                     }
@@ -350,7 +362,13 @@ class Operaciones {
                         $_caja->setCodigo($fila['CODIGO']);
                         $_caja->setId($fila['ID_CAJA_NEGRA']);
                         $_caja->setFecha_alta($fila['FECHA_ALTA']);
-                        $_caja->setEstanteria($filaOcu['COD_ESTANTERIA']);
+                        $sentenciaEst = "SELECT e.CODIGO FROM estanteria e WHERE e.ID_ESTANTERIA=(SELECT COD_ESTANTERIA FROM ocupacion WHERE COD_CAJA = (SELECT ID_CAJA_NEGRA FROM caja_negra WHERE CODIGO LIKE '$_codcaja') AND TIPO LIKE '$_tipo')";
+                        $resulEst = $conexion->query($sentenciaEst, MYSQLI_STORE_RESULT);
+                        $filaEst = $resulEst->fetch_array();
+                        while($filaEst){
+                            $_caja->setEstanteria($filaEst['CODIGO']);
+                            $filaEst = $resulEst->fetch_array();
+                        }
                         $_caja->setLeja($filaOcu['LEJA']);
                         $filaOcu = $resulOcu->fetch_array();
                     }
@@ -367,17 +385,21 @@ class Operaciones {
         global $conexion;
 
         if ($_caja instanceof CajaSorpresa) {
-            $sentencia = "DELETE FROM caja_sorpresa WHERE CODIGO = $_codcaja";
+            $sentencia = "DELETE FROM caja_sorpresa WHERE CODIGO = '$_codcaja'";
         }
         if ($_caja instanceof CajaFuerte) {
-            $sentencia = "DELETE FROM caja_fuerte WHERE CODIGO = $_codcaja";
+            $sentencia = "DELETE FROM caja_fuerte WHERE CODIGO = '$_codcaja'";
         }
         if ($_caja instanceof CajaNegra) {
-            $sentencia = "DELETE FROM caja_negra WHERE CODIGO = $_codcaja";
+            $sentencia = "DELETE FROM caja_negra WHERE CODIGO = '$_codcaja'";
         }
 
         if ($conexion->query($sentencia)) {
-            header('Location: ../index.php');
+            header('Location: ../Vista/SacarCaja.php');
+        }
+        else{
+            echo 'NO!';
+            print_r($_codcaja);
         }
     }
 
