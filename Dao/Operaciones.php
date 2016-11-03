@@ -358,7 +358,7 @@ class Operaciones {
                     $resulOcu = $conexion->query($sentenciaOcu, MYSQLI_STORE_RESULT);
                     $filaOcu = $resulOcu->fetch_array();
                     while ($filaOcu) {
-                        $_caja = new CajaFuerte($fila['ALTO'], $fila['ANCHO'], $fila['PROFUNDIDAD'], $fila['COLOR'], $fila['PLACA']);
+                        $_caja = new CajaNegra($fila['ALTO'], $fila['ANCHO'], $fila['PROFUNDIDAD'], $fila['COLOR'], $fila['PLACA']);
                         $_caja->setCodigo($fila['CODIGO']);
                         $_caja->setId($fila['ID_CAJA_NEGRA']);
                         $_caja->setFecha_alta($fila['FECHA_ALTA']);
