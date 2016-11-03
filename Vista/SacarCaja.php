@@ -38,5 +38,6 @@ and open the template in the editor.
             </table>
             <input type="submit" class="btn2" value="Sacar">
         </form>
+        <a href="../index.php"><button>Volver</button></a>
     </body>
 </html>

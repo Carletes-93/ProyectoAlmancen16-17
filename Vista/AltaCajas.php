@@ -13,7 +13,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class="contenedor">
-            <h1>Gestión Estanterías</h1>
+            <h1>Alta de cajas</h1>
             <table>
                 <tr>
                     <td>

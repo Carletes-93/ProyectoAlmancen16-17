@@ -11,6 +11,9 @@ switch ($_opcion) {
     case 'SACAR':
         header('Location:../Vista/SacarCaja.php');
         break;
+    case 'DEVOLVER':
+        header('Location:../Vista/DevolverCaja.php');
+        break;
     default:
         break;
 }

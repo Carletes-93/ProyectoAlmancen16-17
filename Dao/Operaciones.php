@@ -309,7 +309,7 @@ class Operaciones {
                         $sentenciaEst = "SELECT e.CODIGO FROM estanteria e WHERE e.ID_ESTANTERIA=(SELECT COD_ESTANTERIA FROM ocupacion WHERE COD_CAJA = (SELECT ID_CAJA_SORPRESA FROM caja_sorpresa WHERE CODIGO LIKE '$_codcaja') AND TIPO LIKE '$_tipo')";
                         $resulEst = $conexion->query($sentenciaEst, MYSQLI_STORE_RESULT);
                         $filaEst = $resulEst->fetch_array();
-                        while($filaEst){
+                        while ($filaEst) {
                             $_caja->setEstanteria($filaEst['CODIGO']);
                             $filaEst = $resulEst->fetch_array();
                         }
@@ -337,7 +337,7 @@ class Operaciones {
                         $sentenciaEst = "SELECT e.CODIGO FROM estanteria e WHERE e.ID_ESTANTERIA=(SELECT COD_ESTANTERIA FROM ocupacion WHERE COD_CAJA = (SELECT ID_CAJA_FUERTE FROM caja_fuerte WHERE CODIGO LIKE '$_codcaja') AND TIPO LIKE '$_tipo')";
                         $resulEst = $conexion->query($sentenciaEst, MYSQLI_STORE_RESULT);
                         $filaEst = $resulEst->fetch_array();
-                        while($filaEst){
+                        while ($filaEst) {
                             $_caja->setEstanteria($filaEst['CODIGO']);
                             $filaEst = $resulEst->fetch_array();
                         }
@@ -365,7 +365,7 @@ class Operaciones {
                         $sentenciaEst = "SELECT e.CODIGO FROM estanteria e WHERE e.ID_ESTANTERIA=(SELECT COD_ESTANTERIA FROM ocupacion WHERE COD_CAJA = (SELECT ID_CAJA_NEGRA FROM caja_negra WHERE CODIGO LIKE '$_codcaja') AND TIPO LIKE '$_tipo')";
                         $resulEst = $conexion->query($sentenciaEst, MYSQLI_STORE_RESULT);
                         $filaEst = $resulEst->fetch_array();
-                        while($filaEst){
+                        while ($filaEst) {
                             $_caja->setEstanteria($filaEst['CODIGO']);
                             $filaEst = $resulEst->fetch_array();
                         }
@@ -381,7 +381,7 @@ class Operaciones {
 
     public function borrarCaja($_caja) {
         $_codcaja = $_caja->getCodigo();
-        
+
         global $conexion;
 
         if ($_caja instanceof CajaSorpresa) {
@@ -396,10 +396,6 @@ class Operaciones {
 
         if ($conexion->query($sentencia)) {
             header('Location: ../Vista/SacarCaja.php');
-        }
-        else{
-            echo 'NO!';
-            print_r($_codcaja);
         }
     }
 
