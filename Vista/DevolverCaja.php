@@ -66,7 +66,7 @@ $vEstLibres = Operaciones::cargarEstanteriasLibres();
                     </td>
                 </tr>
             </table>
-            <input type="submit" class="btn2" value="Sacar">
+            <input type="submit" class="btn2" value="Devolver">
         </form>
         <a href="../index.php"><button>Volver</button></a>
     </body>

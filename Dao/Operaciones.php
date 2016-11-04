@@ -398,5 +398,56 @@ class Operaciones {
             header('Location: ../Vista/SacarCaja.php');
         }
     }
-
+    
+    public function cargarCajaDevolver($_tipo, $_codCaja, $_estNueva, $_lejaNueva){
+        include_once '../Modelo/CajaBackup.php';
+        
+        global $conexion;
+        
+        switch($_tipo){
+            case 'sorpresa':
+                $sentenciaSor = "SELECT * FROM caja_sorpresa_backup WHERE CODIGO LIKE '$_codCaja'";
+                $resulSor = $conexion->query($sentenciaSor, MYSQLI_STORE_RESULT);
+                $filaSor = $resulSor->fetch_array();
+                while($filaSor){
+                    $caja = new CajaBackup($filaSor['ALTO'], $filaSor['ANCHO'], $filaSor['PROFUNDIDAD'], $filaSor['SORPRESA'], $filaSor['COLOR'], $filaSor['FECHA_ALTA'], $filaSor['LEJA'], $filaSor['FECHA_BORRADO'], $filaSor['ESTANTERIA_ANTIGUA']);
+                    $caja->setCodigo($filaSor['CODIGO']);
+                    $caja->setId($filaSor['ID_CAJA_SORPRESA_BACKUP']);
+                    $caja->setTipo($_tipo);
+                    $caja->setNueva_estanteria($_estNueva);
+                    $caja->setNueva_leja($_lejaNueva);
+                    $filaSor = $resulSor->fetch_array();
+                }
+                break;
+            case 'fuerte':
+                $sentenciaFu = "SELECT * FROM caja_fuerte_backup WHERE CODIGO LIKE '$_codCaja'";
+                $resulFu = $conexion->query($sentenciaFu, MYSQLI_STORE_RESULT);
+                $filaFu = $resulFu->fetch_array();
+                while($filaFu){
+                    $caja = new CajaBackup($filaFu['ALTO'], $filaFu['ANCHO'], $filaFu['PROFUNDIDAD'], $filaFu['CLAVE'], $filaFu['COLOR'], $filaFu['FECHA_ALTA'], $filaFu['LEJA'], $filaFu['FECHA_BORRADO'], $filaFu['ESTANTERIA_ANTIGUA']);
+                    $caja->setCodigo($filaFu['CODIGO']);
+                    $caja->setId($filaFu['ID_CAJA_SORPRESA_BACKUP']);
+                    $caja->setTipo($_tipo);
+                    $caja->setNueva_estanteria($_estNueva);
+                    $caja->setNueva_leja($_lejaNueva);
+                    $filaFu = $resulFu->fetch_array();
+                }
+                break;
+            case 'negra':
+                $sentenciaNe = "SELECT * FROM caja_negra_backup WHERE CODIGO LIKE '$_codCaja'";
+                $resulNe = $conexion->query($sentenciaNe, MYSQLI_STORE_RESULT);
+                $filaNe = $resulNe->fetch_array();
+                while($filaNe){
+                    $caja = new CajaBackup($filaNe['ALTO'], $filaNe['ANCHO'], $filaNe['PROFUNDIDAD'], $filaNe['SORPRESA'], $filaNe['COLOR'], $filaNe['FECHA_ALTA'], $filaNe['LEJA'], $filaNe['FECHA_BORRADO'], $filaNe['ESTANTERIA_ANTIGUA']);
+                    $caja->setCodigo($filaNe['CODIGO']);
+                    $caja->setId($filaNe['ID_CAJA_SORPRESA_BACKUP']);
+                    $caja->setTipo($_tipo);
+                    $caja->setNueva_estanteria($_estNueva);
+                    $caja->setNueva_leja($_lejaNueva);
+                    $filaNe = $resulNe->fetch_array();
+                }
+                break;
+        }
+        return $caja;
+    }
 }

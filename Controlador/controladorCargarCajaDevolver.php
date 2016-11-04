@@ -14,3 +14,4 @@ $_SESSION['caja_a_devolver'] = $_devCaja;
 header("Location:../Vista/ConfirmacionDevolverCaja.php");
 
 
+//drop trigger if exist "nombre"
