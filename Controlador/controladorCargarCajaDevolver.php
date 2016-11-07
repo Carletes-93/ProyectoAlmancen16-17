@@ -12,6 +12,3 @@ $_devCaja = Operaciones::cargarCajaDevolver($_tipo, $_codcaja, $_estNueva, $_lej
 
 $_SESSION['caja_a_devolver'] = $_devCaja;
 header("Location:../Vista/ConfirmacionDevolverCaja.php");
-
-
-//drop trigger if exist "nombre"

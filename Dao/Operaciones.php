@@ -450,4 +450,42 @@ class Operaciones {
         }
         return $caja;
     }
+    
+    public function devolverCaja($_caja){
+        include_once '../Modelo/CajaBackup.php';
+        
+        
+        global $conexion;
+        
+        $_cod = $_caja->getCodigo();
+        $_tipo = $_caja->getTipo();
+        
+        $conexion->autocommit(FALSE);
+        
+        
+        switch ($_tipo) {
+                case 'sorpresa':
+                    include_once '../Modelo/TriggerDevolverCS.php';
+                    $sentencia = "DELETE FROM caja_sorpresa_backup WHERE CODIGO = '$_cod'";
+                    $resul3 = $conexion->query($sentencia);
+                    global $resul1, $resul2;
+                    break;
+                case 'seguridad':
+                    $sentencia = "DELETE FROM caja_fuerte_backup WHERE CODIGO = '$_cod'";
+                    break;
+                case 'negra':
+                    $sentencia = "DELETE FROM caja_negra_backup WHERE CODIGO = '$_cod'";
+                    break;
+            }
+        
+        if($re && $resul2 && $resul3){
+            $conexion->commit();
+            header('Location: ../Vista/DevolverCaja.php');
+        }
+        else{
+            $conexion->rollback();
+            echo ("Caja no devuelta");
+            echo ($resul1);
+        }
+    }
 }
