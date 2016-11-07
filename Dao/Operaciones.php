@@ -465,9 +465,9 @@ class Operaciones {
         
         switch ($_tipo) {
                 case 'sorpresa':
-                    include_once '../Modelo/TriggerDevolverCS.php';
                     $sentencia = "DELETE FROM caja_sorpresa_backup WHERE CODIGO = '$_cod'";
                     $resul3 = $conexion->query($sentencia);
+                    include_once '../Modelo/TriggerDevolverCS.php';
                     global $resul1, $resul2;
                     break;
                 case 'seguridad':
@@ -478,14 +478,13 @@ class Operaciones {
                     break;
             }
         
-        if($re && $resul2 && $resul3){
+        if($resul1 && $resul2 && $resul3){
             $conexion->commit();
             header('Location: ../Vista/DevolverCaja.php');
         }
         else{
             $conexion->rollback();
             echo ("Caja no devuelta");
-            echo ($resul1);
         }
     }
 }
