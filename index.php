@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 
 <?php
-//include_once './Dao/Operaciones.php';
-//include_once './Modelo/Estanteria.php';
-////$vLista = Operaciones::cargarEstanteriasLibres();
+session_start();
+if(!$_SESSION['usuario']){
+    header("Location: controlador/controladorUsuario.php");
+}
+else{
+    $user=$_SESSION['usuario'];
+}
 ?>
 <html>
     <head>

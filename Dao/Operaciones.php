@@ -490,4 +490,19 @@ class Operaciones {
             echo ("Caja no devuelta");
         }
     }
+    
+    public function comprobarUsuario(){
+        global $conexion;
+        
+        $sentencia = "SELECT * FROM usuario";
+        
+        $resul = $conexion->query($sentencia);
+        
+        if($resul->num_rows == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }
