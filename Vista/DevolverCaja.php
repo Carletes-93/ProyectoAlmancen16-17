@@ -13,7 +13,7 @@ $vEstLibres = Operaciones::cargarEstanteriasLibres();
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="Vista/JS-CSS/css.css"/>
+        <link rel="stylesheet" type="text/css" href="./JS-CSS/css.css"/>
         <script type="text/javascript" src="JS-CSS/js.js"></script>
         <title>Devolver caja</title>
     </head>

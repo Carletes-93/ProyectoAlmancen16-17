@@ -9,6 +9,6 @@ $_lejaNueva = $_REQUEST['LEJA'];
 
 session_start();
 $_devCaja = Operaciones::cargarCajaDevolver($_tipo, $_codcaja, $_estNueva, $_lejaNueva);
-
 $_SESSION['caja_a_devolver'] = $_devCaja;
+
 header("Location:../Vista/ConfirmacionDevolverCaja.php");

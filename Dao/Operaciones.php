@@ -404,6 +404,7 @@ class Operaciones {
         
         global $conexion;
         
+        
         switch($_tipo){
             case 'sorpresa':
                 $sentenciaSor = "SELECT * FROM caja_sorpresa_backup WHERE CODIGO LIKE '$_codCaja'";
@@ -426,7 +427,7 @@ class Operaciones {
                 while($filaFu){
                     $caja = new CajaBackup($filaFu['ALTO'], $filaFu['ANCHO'], $filaFu['PROFUNDIDAD'], $filaFu['CLAVE'], $filaFu['COLOR'], $filaFu['FECHA_ALTA'], $filaFu['LEJA'], $filaFu['FECHA_BORRADO'], $filaFu['ESTANTERIA_ANTIGUA']);
                     $caja->setCodigo($filaFu['CODIGO']);
-                    $caja->setId($filaFu['ID_CAJA_SORPRESA_BACKUP']);
+                    $caja->setId($filaFu['ID_CAJA_FUERTE_BACKUP']);
                     $caja->setTipo($_tipo);
                     $caja->setNueva_estanteria($_estNueva);
                     $caja->setNueva_leja($_lejaNueva);
@@ -438,9 +439,9 @@ class Operaciones {
                 $resulNe = $conexion->query($sentenciaNe, MYSQLI_STORE_RESULT);
                 $filaNe = $resulNe->fetch_array();
                 while($filaNe){
-                    $caja = new CajaBackup($filaNe['ALTO'], $filaNe['ANCHO'], $filaNe['PROFUNDIDAD'], $filaNe['SORPRESA'], $filaNe['COLOR'], $filaNe['FECHA_ALTA'], $filaNe['LEJA'], $filaNe['FECHA_BORRADO'], $filaNe['ESTANTERIA_ANTIGUA']);
+                    $caja = new CajaBackup($filaNe['ALTO'], $filaNe['ANCHO'], $filaNe['PROFUNDIDAD'], $filaNe['PLACA'], $filaNe['COLOR'], $filaNe['FECHA_ALTA'], $filaNe['LEJA'], $filaNe['FECHA_BORRADO'], $filaNe['ESTANTERIA_ANTIGUA']);
                     $caja->setCodigo($filaNe['CODIGO']);
-                    $caja->setId($filaNe['ID_CAJA_SORPRESA_BACKUP']);
+                    $caja->setId($filaNe['ID_CAJA_NEGRA_BACKUP']);
                     $caja->setTipo($_tipo);
                     $caja->setNueva_estanteria($_estNueva);
                     $caja->setNueva_leja($_lejaNueva);
@@ -465,20 +466,22 @@ class Operaciones {
         
         switch ($_tipo) {
                 case 'sorpresa':
+                    include_once '../Modelo/TriggerDevolverCS.php';
                     $sentencia = "DELETE FROM caja_sorpresa_backup WHERE CODIGO = '$_cod'";
                     $resul3 = $conexion->query($sentencia);
-                    include_once '../Modelo/TriggerDevolverCS.php';
-                    global $resul1, $resul2;
                     break;
-                case 'seguridad':
+                case 'fuerte':
+                    include_once '../Modelo/TriggerDevolverCF.php';
                     $sentencia = "DELETE FROM caja_fuerte_backup WHERE CODIGO = '$_cod'";
+                    $resul3 = $conexion->query($sentencia);
                     break;
                 case 'negra':
+                    include_once '../Modelo/TriggerDevolverCN.php';
                     $sentencia = "DELETE FROM caja_negra_backup WHERE CODIGO = '$_cod'";
+                    $resul3 = $conexion->query($sentencia);
                     break;
             }
-        
-        if($resul1 && $resul2 && $resul3){
+        if($resul1&&$resul2&&$resul3){
             $conexion->commit();
             header('Location: ../Vista/DevolverCaja.php');
         }
