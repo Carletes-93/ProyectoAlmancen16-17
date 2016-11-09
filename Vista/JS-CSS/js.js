@@ -35,13 +35,13 @@ function activarTab(unTab) {
                     var tabck = document.getElementById("tabck-" + i);
                     if (tabdiv.id == esteTabDiv.id) {
                         tabdiv.style.display = "block";
-                        tabck.style.color = "slategrey";
-                        tabck.style.backgroundColor = "rgb(235, 235, 225)";
+                        tabck.style.color = "black";
+                        tabck.style.backgroundColor = "dodgerblue";
                         tabck.style.borderBottomColor = "rgb(235, 235, 225)";
                     } else {
                         tabdiv.style.display = "none";
-                        tabck.style.color = "white";
-                        tabck.style.backgroundColor = "gray";
+                        tabck.style.color = "black";
+                        tabck.style.backgroundColor = "steelblue";
                         tabck.style.borderBottomColor = "gray";
                     }
                 }
@@ -66,20 +66,18 @@ function tipocaja() {
     }
 }
 
+//Funcion Ajax para cargar estanterias y lejas libres.
 function lejasLibres(str) {
     var xmlhttp;
     if (str == "") {
         document.getElementById("lejalibre").innerHTML = "";
         return;
     }
-    /*Asumiendo que el select de la estación destino se llama Lista_Destino, si la cadena de Lista_Origen es vacía, también lo será Lista_Destino
-     */
-    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+    
+    if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
-        /* Creamos el objeto request para conexiones http,
-         compatible con los navegadores descritos*/
     }
-    else {// code for IE6, IE5
+    else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = function () {
@@ -87,7 +85,7 @@ function lejasLibres(str) {
             document.getElementById("lejalibre").innerHTML = xmlhttp.responseText;
             /*Seleccionamos el elemento que recibirá el flujo de datos*/
         }
-    }
+    };
     xmlhttp.open("GET", "../Controlador/lejasLibres.php?CODIGO=" + str, true);
     /*Mandamos al PHP encargado de traer los datos, el valor de referencia */
     xmlhttp.send();

@@ -7,13 +7,15 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Iniciar sesion</title>
+        <link rel="stylesheet" type="text/css" href="./JS-CSS/css.css"/>
+        <link rel="icon" type="image/png" href="./Imagenes/favicon.png" />
+        <title>Iniciar sesión</title>
     </head>
     <body>
         <div id="logear">
-            <h1>Iniciar Sesion</h1>
+            <h1>Iniciar Sesión</h1>
             <form action="../Controlador/controladorLogin.php">
-                <table>
+                <table id="login">
                     <tr>
                         <td>
                             Usuario:
@@ -32,7 +34,9 @@ and open the template in the editor.
                     </tr>
                 </table>
                 <input type="submit" class="btn" name="LOGIN" value="Login">
+                <br>
             </form>
+            <hr>
             <a href="RegistrarUsuario.php"><button class="btn">Registrar Usuario</button></a>
         </div>
     </body>

@@ -12,14 +12,15 @@ if (!$_SESSION['usuario']) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Inicio</title>
         <link rel="stylesheet" type="text/css" href="Vista/JS-CSS/css.css"/>
+        <link rel="icon" type="image/png" href="./Imagenes/favicon.png" />
         <script type="text/javascript" src="Vista/JS-CSS/js.js"></script>
     </head>
     <body>
         <div id="cabeceralogin">
             <form id="formlogin" action="Controlador/controladorDesconexion.php">
-                <p>Usuario conectado: <?php echo $user->getNombre() ?>     <input type="submit" class="btn2" name="Desconexion" id="desconectar" value="Desconectar"></p>
+                <p>Usuario conectado: <b><?php echo $user->getNombre() ?></b> <input type="submit" class="btn2" name="Desconexion" id="desconectar" value="Desconectar"></p>
             </form>
         </div>
         <table class="tabs" data-min="0" data-max="2">

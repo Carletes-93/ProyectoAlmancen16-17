@@ -7,13 +7,15 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="./JS-CSS/css.css"/>
+        <link rel="icon" type="image/png" href="./Imagenes/favicon.png" />
         <title>Registrar Usuario</title>
     </head>
     <body>
         <div id="registrar">
             <h1>Registrar Usuario</h1>
             <form action="../Controlador/controladorRegistrar.php">
-                <table id="tablaregistro">
+                <table id="registro">
                     <tr>
                         <td>
                             Usuario:
