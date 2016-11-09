@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php
+include_once './Modelo/Usuario.php';
 session_start();
 if (!$_SESSION['usuario']) {
     header("Location: controlador/controladorUsuario.php");
@@ -17,7 +18,7 @@ if (!$_SESSION['usuario']) {
     </head>
     <body>
         <div id="cabeceralogin">
-            <form id="formlogin" action="controlador/controladorDesconexion.php">
+            <form id="formlogin" action="Controlador/controladorDesconexion.php">
                 <p>Usuario conectado: <?php echo $user->getNombre() ?>     <input type="submit" class="btn2" name="Desconexion" id="desconectar" value="Desconectar"></p>
             </form>
         </div>
