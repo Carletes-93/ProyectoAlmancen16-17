@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Description of Operaciones
  *
@@ -503,6 +502,46 @@ class Operaciones {
         }
         else{
             return true;
+        }
+    }
+    
+    public function validarUsuario($_user){
+        include_once '../Modelo/Usuario.php';
+        global $conexion;
+        
+        $_nombre = $_user->getNombre();
+        $_pass = $_user->getPass();
+        
+        $sentencia = "SELECT * FROM usuario WHERE NOMBRE LIKE '$_nombre' AND PASS LIKE '$_pass'";
+        $resul = $conexion->query($sentencia, MYSQLI_STORE_RESULT);
+        
+        if($resul){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public function registrarUsuario($_user){
+        include_once '../Modelo/Usuario.php';
+        global $conexion;
+        
+        $_nombre = $_user->getNombre();
+        $_pass = $_user->getPass();
+        
+        $conexion->autocommit(FALSE);
+        
+        $sentencia = "INSERT INTO usuario VALUES (NULL, '$_nombre', '$_pass')";
+        $resul = $conexion->query($sentencia);
+        
+        if($resul){
+            $conexion->commit();
+            return true;
+        }
+        else{
+            $conexion->rollback();
+            return false;
         }
     }
 }

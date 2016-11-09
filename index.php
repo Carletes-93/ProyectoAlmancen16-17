@@ -2,11 +2,10 @@
 
 <?php
 session_start();
-if(!$_SESSION['usuario']){
+if (!$_SESSION['usuario']) {
     header("Location: controlador/controladorUsuario.php");
-}
-else{
-    $user=$_SESSION['usuario'];
+} else {
+    $user = $_SESSION['usuario'];
 }
 ?>
 <html>
@@ -17,6 +16,11 @@ else{
         <script type="text/javascript" src="Vista/JS-CSS/js.js"></script>
     </head>
     <body>
+        <div id="cabeceralogin">
+            <form id="formlogin" action="controlador/controladorDesconexion.php">
+                <p>Usuario conectado: <?php echo $user->getNombre() ?>     <input type="submit" class="btn2" name="Desconexion" id="desconectar" value="Desconectar"></p>
+            </form>
+        </div>
         <table class="tabs" data-min="0" data-max="2">
             <tr>
                 <th class="tabck" id="tabck-0" onclick="activarTab(this)">Estanterías</th>

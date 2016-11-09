@@ -7,9 +7,40 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Registrar Usuario</title>
     </head>
     <body>
-        REGISTRAR
+        <div id="registrar">
+            <h1>Registrar Usuario</h1>
+            <form action="../Controlador/controladorRegistrar.php">
+                <table id="tablaregistro">
+                    <tr>
+                        <td>
+                            Usuario:
+                        </td>
+                        <td>
+                            <input type="text" name="NOMBRE" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Contraseña:
+                        </td>
+                        <td>
+                            <input type="password" id="pass1" name="PASS" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Confirmar contraseña:
+                        </td>
+                        <td>
+                            <input type="password" id="pass2" name="CONFPASS" required>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" class="btn" name="registrar" value="Registrar">
+            </form>
+        </div>
     </body>
 </html>
