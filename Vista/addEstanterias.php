@@ -43,7 +43,7 @@ include_once '../Modelo/Estanteria.php';
                 <input type="submit" class="btn2" value="Añadir">
             </form>
             <hr>
-            <a href="./GestionEstanterias.php"><button>Volver</button></a>
+            <a href="./GestionEstanterias.php"><button class="btn2">Volver</button></a>
         </div>
     </body>
 </html>

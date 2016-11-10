@@ -57,7 +57,7 @@ and open the template in the editor.
                 }
                 ?>
             </table>
-            <a href="./GestionEstanterias.php"><button class="btn2">Volver</button></a>
+            <a href="../index.php"><button class="btn2">Volver</button></a>
         </div>
     </body>
 </html>

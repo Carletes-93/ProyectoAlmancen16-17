@@ -40,7 +40,7 @@ and open the template in the editor.
                 <input type="submit" class="btn2" value="Sacar">
             </form>
             <hr>
-            <a href="../index.php"><button>Volver</button></a>
+            <a href="../index.php"><button class="btn2">Volver</button></a>
         </div>
     </body>
 </html>

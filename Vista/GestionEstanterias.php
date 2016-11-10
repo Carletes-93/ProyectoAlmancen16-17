@@ -20,7 +20,7 @@ and open the template in the editor.
                         Añadir Estantería
                     </td>
                     <td>
-                        <a href="./addEstanterias.php"><button>Ir</button></a> 
+                        <a href="./addEstanterias.php"><button class="btn2">Ir</button></a> 
                     </td>
                 </tr>
                 <tr>
@@ -28,11 +28,11 @@ and open the template in the editor.
                         Listar Estanterías
                     </td>
                     <td>
-                        <a href="../Controlador/controladorListarEstanterias.php"><button>Ir</button> </a>
+                        <a href="../Controlador/controladorListarEstanterias.php"><button class="btn2">Ir</button> </a>
                     </td>
                 </tr>
             </table>
-            <a href="../index.php"><button>Volver</button></a> 
+            <a href="../index.php"><button class="btn2">Volver</button></a> 
         </div>
     </body>
 </html>

@@ -33,11 +33,11 @@ and open the template in the editor.
                         </td>
                     </tr>
                 </table>
-                <input type="submit" class="btn" name="LOGIN" value="Login">
+                <input type="submit" class="btn2" name="LOGIN" value="Login">
                 <br>
             </form>
             <hr>
-            <a href="RegistrarUsuario.php"><button class="btn">Registrar Usuario</button></a>
+            <a href="RegistrarUsuario.php"><button class="btn2">Registrar Usuario</button></a>
         </div>
     </body>
 </html>

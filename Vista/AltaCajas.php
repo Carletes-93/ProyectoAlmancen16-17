@@ -20,11 +20,11 @@ and open the template in the editor.
                         Alta de caja
                     </td>
                     <td>
-                        <a href="./addCajas.php"><button>Ir</button></a> 
+                        <a href="./addCajas.php"><button class="btn2">Ir</button></a> 
                     </td>
                 </tr>
             </table>
-            <a href="../index.php"><button>Volver</button></a> 
+            <a href="../index.php"><button class="btn2">Volver</button></a> 
         </div>
     </body>
 </html>

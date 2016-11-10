@@ -41,7 +41,7 @@ and open the template in the editor.
                         </td>
                     </tr>
                 </table>
-                <input type="submit" class="btn" name="registrar" value="Registrar">
+                <input type="submit" class="btn2" name="registrar" value="Registrar">
             </form>
         </div>
     </body>

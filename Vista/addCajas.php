@@ -77,7 +77,7 @@ $vEstLibres = Operaciones::cargarEstanteriasLibres();
                 <input type="submit" class="btn2" value="Dar Alta">
             </form>
             <hr>
-            <a href="./AltaCajas.php"><button>Volver</button></a>
+            <a href="./AltaCajas.php"><button class="btn2">Volver</button></a>
         </div>
     </body>
 </html>

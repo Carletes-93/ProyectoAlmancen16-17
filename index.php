@@ -47,6 +47,7 @@ if (!$_SESSION['usuario']) {
                     </div>
                     <div class="tabdiv" id="tabdiv-2">
                         <form action="Controlador/despachadorAlmacen.php">
+                            <p><h3><input type="radio" name="opcion" value="LISTESTANTERIAS" required>Listar Estanterías</h3></p>
                             <p><h3><input type="radio" name="opcion" value="INVENTARIO" required>Inventario</h3></p>
                             <p><h3><input type="radio" name="opcion" value="SACAR" required>Sacar Caja</h3></p>
                             <p><h3><input type="radio" name="opcion" value="DEVOLVER" required>Devolver Caja</h3></p>
