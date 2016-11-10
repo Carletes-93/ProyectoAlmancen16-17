@@ -7,8 +7,8 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <link rel="stylesheet" type="text/css" href="Vista/JS-CSS/css.css"/>
+        <title>Confirmación Devolver Caja</title>
+        <link rel="stylesheet" type="text/css" href="JS-CSS/css.css"/>
     </head>
     <body>
         <?php
@@ -18,13 +18,13 @@ and open the template in the editor.
         $vCaja_a_Sacar = $_SESSION['caja_a_devolver'];
         ?>
 
-        <div class="listar">
-            <h2>¿Quieres devolver la siguiente caja en la ubicacion indicada?</h2>
+        <div id="divconfdevolver">
+            <h2>¿Quieres devolver la siguiente caja en la ubicación indicada?</h2>
 
-            <table class="tabla1" border="3px black solid">
+            <table id="tablaconfdevolver" border="1px solid">
                 <tr>
                     <td class="tdh">
-                        Codigo
+                        Código
                     </td>
                     <td class="tdh">
                         Alto
@@ -48,19 +48,19 @@ and open the template in the editor.
                         Fecha Borrado
                     </td>
                     <td class="tdh">
-                        Estanteria Antigua
+                        Estantería Antigua
                     </td>
                     <td class="tdh">
                         Leja Antigua
                     </td>
                     <td class="tdh">
-                        Estanteria Nueva
+                        Estantería Nueva
                     </td>
                     <td class="tdh">
                         Leja Nueva
                     </td>
                 </tr>
-                <tr>
+                <tr class="conten">
                     <td>
                         <?php echo $vCaja_a_Sacar->getCodigo(); ?>
                     </td>

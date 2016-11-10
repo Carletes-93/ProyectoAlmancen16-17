@@ -18,19 +18,18 @@ and open the template in the editor.
         $vInventario = $_SESSION['inventario'];
         $arrayEstanteriaCajas = $vInventario->getEstanteriacajas();
         ?>
-        <div class="listar"> 
-            <h1>Inventario del Almacen</h1>
-            <h3>Fecha: <?php echo $vInventario->getFecha(); ?></h3>
+        <div id="listarCajas"> 
+            <h2>Inventario del Almacén -- Fecha: <?php echo $vInventario->getFecha(); ?></h2>
             <?php
             foreach ($arrayEstanteriaCajas as $_estanteria) {
                 ?>
-                <table class="tabla1" border="1px" width="800px">
+                <table class="tablaListCajas" border="1px solid">
                     <tr>
-                        <th colspan=8">Estanteria: <?php echo $_estanteria->getCodigo_estanteria(); ?> Pasillo: <?php echo $_estanteria->getPasillo(); ?> Numero: <?php echo $_estanteria->getNumero(); ?></th>
+                        <th class="titulotabla"colspan=8">Estantería: <?php echo $_estanteria->getCodigo_estanteria(); ?> Pasillo: <?php echo $_estanteria->getPasillo(); ?> Número: <?php echo $_estanteria->getNumero(); ?></th>
                     </tr>
                     <tr>
                         <td class="tdh">
-                            Codigo
+                            Código
                         </td>
                         <td class="tdh">
                             Alto
@@ -41,7 +40,7 @@ and open the template in the editor.
                         <td class="tdh">
                             Profundidad
                         </td>
-                        <td>
+                        <td class="tdh">
                             Tipo
                         </td>
                         <td class="tdh">
@@ -58,7 +57,7 @@ and open the template in the editor.
                     $grupocajas = $_estanteria->getCajas();
                     foreach ($grupocajas as $_cajas) {
                         ?>
-                        <tr>
+                        <tr class="conten">
                             <td>
                                 <?php echo $_cajas->getCodigo(); ?>
                             </td>
@@ -98,7 +97,7 @@ and open the template in the editor.
                                 ?>
                             </td>
                             <td style="background-color: <?php echo $_cajas->getColor(); ?>">
-                                
+
                             </td>
                             <td>
                                 <?php echo $_cajas->getFecha_alta(); ?>
@@ -111,7 +110,7 @@ and open the template in the editor.
                 <?php
             }
             ?>
-            <a href="../index.php"><button class="btn2">Volver</button></a>
+            <a href="../index.php"><button id="volverinventario" class="btn2">Volver</button></a>
         </div>
     </body>
 </html>

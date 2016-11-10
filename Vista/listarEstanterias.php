@@ -9,7 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="JS-CSS/css.css"/>
         <script type="text/javascript" src="JS-CSS/js.js"></script>
-        <title></title>
+        <title>Listado Estanterías</title>
     </head>
     <body>
         <?php
@@ -17,23 +17,23 @@ and open the template in the editor.
         session_start();
         $vListado = $_SESSION['listarEstanterias'];
         ?>
-        <div class="listar">
-            <table class="tabla1" border="1px solid">
+        <div id="listarEst">
+            <table id="tablaListEst" border="1px solid">
                 <tr>
-                    <th colspan="6" align="center">Listado de las estanterias del Almacen</th>
+                    <th class="titulotabla" colspan="6" align="center">Listado de las estanterias del Almacen</th>
                 </tr>
                 <tr>
-                    <td class="tdh">Codigo Estanteria</td>
+                    <td class="tdh">Código Estantería</td>
                     <td class="tdh">Nº Lejas</td>
                     <td class="tdh">Material</td>
                     <td class="tdh">Pasillo</td>
-                    <td class="tdh">Numero</td>
+                    <td class="tdh">Número</td>
                     <td class="tdh">Lejas Ocupadas</td>
                 </tr>
                 <?php
                 foreach ($vListado as $estanteria) {
                     ?>
-                    <tr>
+                <tr class="conten">
                         <td>
                             <?php echo $estanteria->getCodigo_estanteria(); ?>
                         </td>

@@ -15,7 +15,7 @@ table.tabs {
     border-spacing: 0;
     background-color: transparent;
     font-size: 0.9em;
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
     margin-top: 5px;
 }
@@ -51,6 +51,7 @@ table.tabs td {
 }
 tr.filadiv {
     background-color: aliceblue;
+    text-align: center;
 }
 /* El ancho y alto de los div.tabdiv se configuran
 en cada aplicación */
@@ -75,7 +76,16 @@ table.contenido {
 
 div.contenedor {
     margin: 0 auto;
-    width: 60%;
+    width: 40%;
+    text-align: center;
+    background-color: aliceblue;
+    margin-top: 50px;
+    padding-top: 1px;
+    padding-bottom: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: darkgrey solid 5px;
+    border-radius: 15px 15px;
 }
 
 a {
@@ -89,6 +99,9 @@ a button {
 
 input.btn2{
     cursor: pointer;
+    margin-bottom: 8px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 div#logear{
@@ -145,3 +158,164 @@ input#desconectar{
     margin-left: 10px;
 }
 
+table#GestEstanterias{
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+table#addEstanteria{
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+div#listarEst{
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    background-color: aliceblue;
+    margin-top: 50px;
+    padding-top: 1px;
+    padding-bottom: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: darkgrey solid 5px;
+    border-radius: 15px 15px;
+}
+
+table#tablaListEst{
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    width: 90%;
+    background-color: darkgray;
+}
+
+th.titulotabla{
+    background-color: steelblue;
+}
+
+tr.conten td{
+    background-color: aliceblue;
+}
+
+td.tdh{
+    background-color: dodgerblue;
+}
+
+table#altacajas{
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+table#addCajas{
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+div#listarCajas{
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    background-color: aliceblue;
+    margin-top: 50px;
+    padding-top: 1px;
+    padding-bottom: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: darkgrey solid 5px;
+    border-radius: 15px 15px;
+}
+
+table.tablaListCajas{
+    margin: 0 auto;
+    margin-bottom: 2px;
+    width: 90%;
+    background-color: darkgray;
+}
+
+button#volverinventario{
+    margin-top: 30px;
+}
+
+div#divsacacaja{
+    margin: 0 auto;
+    width: 30%;
+    text-align: center;
+    background-color: aliceblue;
+    margin-top: 50px;
+    padding-top: 1px;
+    padding-bottom: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: darkgrey solid 5px;
+    border-radius: 15px 15px;
+}
+
+table#sacaCaja{
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+div#divdevolvercaja{
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+    background-color: aliceblue;
+    margin-top: 50px;
+    padding-top: 1px;
+    padding-bottom: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: darkgrey solid 5px;
+    border-radius: 15px 15px;
+}
+
+table#devolvercaja{
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+div#divconfsacar{
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+    background-color: aliceblue;
+    margin-top: 50px;
+    padding-top: 1px;
+    padding-bottom: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: darkgrey solid 5px;
+    border-radius: 15px 15px;
+}
+
+table#tablaconfsacar{
+    margin: 0 auto;
+    margin-bottom: 2px;
+    width: 90%;
+    background-color: darkgray;
+}
+
+div#divconfdevolver{
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+    background-color: aliceblue;
+    margin-top: 50px;
+    padding-top: 1px;
+    padding-bottom: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: darkgrey solid 5px;
+    border-radius: 15px 15px;
+}
+
+table#tablaconfdevolver{
+    margin: 0 auto;
+    margin-bottom: 2px;
+    width: 100%;
+    background-color: darkgray;
+}

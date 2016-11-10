@@ -14,7 +14,7 @@ and open the template in the editor.
     <body>
         <div class="contenedor">
             <h1>Alta de cajas</h1>
-            <table>
+            <table id="altacajas">
                 <tr>
                     <td>
                         Alta de caja

@@ -4,7 +4,6 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -15,10 +14,10 @@ and open the template in the editor.
     <body>
         <div class="contenedor">
             <h1>Gestión Estanterías</h1>
-            <table>
+            <table id="GestEstanterias">
                 <tr>
                     <td>
-                        Añadir Estanteria
+                        Añadir Estantería
                     </td>
                     <td>
                         <a href="./addEstanterias.php"><button>Ir</button></a> 
@@ -26,7 +25,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td>
-                        Listar Estanterias
+                        Listar Estanterías
                     </td>
                     <td>
                         <a href="../Controlador/controladorListarEstanterias.php"><button>Ir</button> </a>

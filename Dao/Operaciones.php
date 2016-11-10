@@ -226,7 +226,7 @@ class Operaciones {
         while ($fila) {
             $_codigoEst = $fila['ID_ESTANTERIA'];
             $aCajas = Array();
-            $sentenciaOcu = "SELECT * FROM ocupacion WHERE COD_ESTANTERIA = $_codigoEst";
+            $sentenciaOcu = "SELECT * FROM ocupacion WHERE COD_ESTANTERIA = $_codigoEst ORDER BY TIPO DESC";
             $resulOcu = $conexion->query($sentenciaOcu, MYSQLI_STORE_RESULT);
             $filaOcu = $resulOcu->fetch_array();
             while ($filaOcu) {

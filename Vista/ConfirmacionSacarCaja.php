@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <link rel="stylesheet" type="text/css" href="Vista/JS-CSS/css.css"/>
+        <title>Confirmación Sacar Caja</title>
+        <link rel="stylesheet" type="text/css" href="JS-CSS/css.css"/>
     </head>
     <body>
         <?php
@@ -15,13 +15,13 @@
         $_Caja_a_Sacar = $_SESSION['caja_a_sacar'];
         ?>
 
-        <div class="listar">
+        <div id="divconfsacar">
             <h2>¿Quieres eliminar la siguiente caja?</h2>
 
-            <table class="tabla1" border="3px black solid">
+            <table id="tablaconfsacar" border="1px solid">
                 <tr>
                     <td class="tdh">
-                        Codigo
+                        Código
                     </td>
                     <td class="tdh">
                         Alto
@@ -52,13 +52,13 @@
                         Fecha Alta
                     </td>
                     <td class="tdh">
-                        Estanteria
+                        Estantería
                     </td>
                     <td class="tdh">
                         Leja
                     </td>
                 </tr>
-                <tr>
+                <tr class="conten">
                     <td>
                         <?php echo $_Caja_a_Sacar->getCodigo(); ?>
                     </td>
