@@ -216,7 +216,7 @@ table#addCajas{
 
 div#listarCajas{
     margin: 0 auto;
-    width: 60%;
+    width: 70%;
     text-align: center;
     background-color: aliceblue;
     margin-top: 50px;
@@ -231,7 +231,7 @@ div#listarCajas{
 table.tablaListCajas{
     margin: 0 auto;
     margin-bottom: 2px;
-    width: 90%;
+    width: 95%;
     background-color: darkgray;
 }
 

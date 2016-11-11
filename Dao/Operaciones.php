@@ -45,7 +45,7 @@ class Operaciones {
 
         global $conexion;
 
-        $sentencia = "SELECT * FROM estanteria";
+        $sentencia = "SELECT * FROM estanteria ORDER BY PASILLO";
 
         $resul = $conexion->query($sentencia, MYSQLI_STORE_RESULT);
 
@@ -220,13 +220,13 @@ class Operaciones {
 
         $aEstanteriaCajas = Array();
 
-        $sentencia = "SELECT * FROM estanteria";
+        $sentencia = "SELECT * FROM estanteria ORDER BY PASILLO";
         $resul = $conexion->query($sentencia, MYSQLI_STORE_RESULT);
         $fila = $resul->fetch_array();
         while ($fila) {
             $_codigoEst = $fila['ID_ESTANTERIA'];
             $aCajas = Array();
-            $sentenciaOcu = "SELECT * FROM ocupacion WHERE COD_ESTANTERIA = $_codigoEst ORDER BY TIPO DESC";
+            $sentenciaOcu = "SELECT * FROM ocupacion WHERE COD_ESTANTERIA = $_codigoEst ORDER BY LEJA ASC";
             $resulOcu = $conexion->query($sentenciaOcu, MYSQLI_STORE_RESULT);
             $filaOcu = $resulOcu->fetch_array();
             while ($filaOcu) {

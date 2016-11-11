@@ -25,9 +25,12 @@ and open the template in the editor.
                 ?>
                 <table class="tablaListCajas" border="1px solid">
                     <tr>
-                        <th class="titulotabla"colspan=8">Estantería: <?php echo $_estanteria->getCodigo_estanteria(); ?> Pasillo: <?php echo $_estanteria->getPasillo(); ?> Número: <?php echo $_estanteria->getNumero(); ?></th>
+                        <th class="titulotabla"colspan=9">Estantería: <?php echo $_estanteria->getCodigo_estanteria(); ?> -- Pasillo: <?php echo $_estanteria->getPasillo(); ?> -- Número: <?php echo $_estanteria->getNumero(); ?></th>
                     </tr>
                     <tr>
+                        <td class="tdh">
+                            Leja
+                        </td>
                         <td class="tdh">
                             Código
                         </td>
@@ -58,6 +61,9 @@ and open the template in the editor.
                     foreach ($grupocajas as $_cajas) {
                         ?>
                         <tr class="conten">
+                            <td>
+                                <?php echo $_cajas->getLeja(); ?>
+                            </td>
                             <td>
                                 <?php echo $_cajas->getCodigo(); ?>
                             </td>

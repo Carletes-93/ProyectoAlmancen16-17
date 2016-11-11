@@ -36,8 +36,6 @@ and open the template in the editor.
                 <input type="submit" class="btn2" name="LOGIN" value="Login">
                 <br>
             </form>
-            <hr>
-            <a href="RegistrarUsuario.php"><button class="btn2">Registrar Usuario</button></a>
         </div>
     </body>
 </html>
