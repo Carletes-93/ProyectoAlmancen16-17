@@ -16,6 +16,7 @@ if (Operaciones::validarUsuario($_user) == true) {
     $_SESSION['usuario'] = $_user;
     header('Location: ../index.php');
 } else {
+    $_SESSION['error'] = 9;
     header('Location: ../Vista/Error.php');
 }
 

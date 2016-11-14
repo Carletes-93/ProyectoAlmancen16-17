@@ -21,6 +21,7 @@ if ($_pass === $_confpass) {
     }
 }
 else{
+    $_SESSION['error'] = 10;
     header('Location: ../Vista/Error.php');
 }
 

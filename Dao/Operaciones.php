@@ -34,7 +34,8 @@ class Operaciones {
             echo "Estanteria añadida correctamente.";
             header("Location:../Vista/addEstanterias.php");
         } else {
-            echo "Estanteria no añadida";
+            $_SESSION['error'] = 1;
+            header('Location: ../Vista/Error.php');
         }
     }
 
@@ -58,6 +59,11 @@ class Operaciones {
             $ObjEstanteria->setCodigo_estanteria($fila['CODIGO']);
             array_push($aEstanterias, $ObjEstanteria);
             $fila = $resul->fetch_array();
+        }
+        
+        if(!$resul){
+            $_SESSION['error'] = 2;
+            header('Location: ../Vista/Error.php');
         }
         return $aEstanterias;
     }
@@ -123,7 +129,8 @@ class Operaciones {
             header("Location:../Vista/addCajas.php");
         } else {
             $conexion->rollback();
-            echo "Caja Sorpresa NO insertada";
+            $_SESSION['error'] = 3;
+            header('Location: ../Vista/Error.php');
         }
         exit();
     }
@@ -165,7 +172,8 @@ class Operaciones {
             header("Location:../Vista/addCajas.php");
         } else {
             $conexion->rollback();
-            echo "Caja Fuerte NO insertada";
+            $_SESSION['error'] = 3;
+            header('Location: ../Vista/Error.php');
         }
         exit();
     }
@@ -207,7 +215,8 @@ class Operaciones {
             header("Location:../Vista/addCajas.php");
         } else {
             $conexion->rollback();
-            echo "Caja Negra NO insertada";
+            $_SESSION['error'] = 3;
+            header('Location: ../Vista/Error.php');
         }
         exit();
     }
@@ -279,6 +288,12 @@ class Operaciones {
             array_push($aEstanteriaCajas, $estanteriaCajas);
             $fila = $resul->fetch_array();
         }
+        
+        if(!$resul || !$resulOcu || !$resulSor || !$resulFu || !$resulNe){
+            $_SESSION['error'] = 4;
+            header('Location: ../Vista/Error.php');
+        }
+        
         $_inventario = new Inventario($aEstanteriaCajas);
         return $_inventario;
     }
@@ -375,6 +390,12 @@ class Operaciones {
                     $fila = $resulNe->fetch_array();
                 }
         }
+        
+        if(!$resulEst || !$resulOcu || !$resulSor || !$resulFu || !$resulNe){
+            $_SESSION['error'] = 5;
+            header('Location: ../Vista/Error.php');
+        }
+        
         return $_caja;
     }
 
@@ -395,6 +416,10 @@ class Operaciones {
 
         if ($conexion->query($sentencia)) {
             header('Location: ../Vista/SacarCaja.php');
+        }
+        else {
+            $_SESSION['error'] = 6;
+            header('Location: ../Vista/Error.php');
         }
     }
     
@@ -448,6 +473,12 @@ class Operaciones {
                 }
                 break;
         }
+        
+        if(!$resulSor || !$resulFu || !$resulNe){
+            $_SESSION['error'] = 7;
+            header('Location: ../Vista/Error.php');
+        }
+        
         return $caja;
     }
     
@@ -486,7 +517,8 @@ class Operaciones {
         }
         else{
             $conexion->rollback();
-            echo ("Caja no devuelta");
+            $_SESSION['error'] = 8;
+            header('Location: ../Vista/Error.php');
         }
     }
     
