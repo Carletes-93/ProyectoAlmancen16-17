@@ -14,6 +14,7 @@ $vEstLibres = Operaciones::cargarEstanteriasLibres();
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="JS-CSS/css.css"/>
+        <link rel="icon" type="image/png" href="./Imagenes/favicon.png" />
         <script type="text/javascript" src="JS-CSS/js.js"></script>
         <title>Alta de Cajas</title>
     </head>

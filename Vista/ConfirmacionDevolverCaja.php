@@ -9,6 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Confirmación Devolver Caja</title>
         <link rel="stylesheet" type="text/css" href="JS-CSS/css.css"/>
+        <link rel="icon" type="image/png" href="./Imagenes/favicon.png" />
     </head>
     <body>
         <?php

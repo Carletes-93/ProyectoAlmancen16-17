@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Confirmación Sacar Caja</title>
         <link rel="stylesheet" type="text/css" href="JS-CSS/css.css"/>
+        <link rel="icon" type="image/png" href="./Imagenes/favicon.png" />
     </head>
     <body>
         <?php
