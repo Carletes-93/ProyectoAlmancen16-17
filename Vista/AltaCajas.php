@@ -10,7 +10,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="JS-CSS/css.css"/>
         <link rel="icon" type="image/png" href="./Imagenes/favicon.png" />
         <script type="text/javascript" src="JS-CSS/js.js"></script>
-        <title></title>
+        <title>Gestión Cajas</title>
     </head>
     <body>
         <div class="contenedor">
